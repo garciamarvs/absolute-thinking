@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Absolute Thinking</title>
+    <style>
+    @font-face {font-family: bbg; src: url('css/BubblegumSans-Regular.otf');}
+    @font-face {font-family: myriad; src: url('css/MyriadPro-Regular.otf');}
+    </style>
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/animation.css">
+<link rel="stylesheet" type="text/css" href="css/animate.css">
+<script src="javascript/jquery.min.js"></script>
+</head>
+<body>
+<audio id="sfx" src="audio/btnSFX.mp3" autostart="true"></audio>
+<audio id="bgsound" src="audio/bgsound.mp3" autoplay loop></audio>    
+<div id="theGame">
+	<!--DONE-->
+	  <div id="MENU">
+	   <img class="gameLogo" src="images/gameLogo.png">
+	   <img class="playbtn" onclick="sLevel(); playSound();" src="images/play.png">
+	   <img class="optionbtn" onclick="option(); playSound();" src="images/help.png">
+	</div>
+  <!--DONE-->  
+		<div id="OPTION">
+    <img class="backbtn" src="images/backbtn.png" onclick="back(); playSound();">
+    <div class="forma">
+		<img class="ins" src="images/ins.png">
+    <form>
+    <input id="radioOn" name="sound" class="rad" type="radio" onclick="audioOn()" checked><span class="on">On</span> 
+    <input id="radioOff" name="sound" class="rad2" type="radio" onclick="audioOff()"><span class="off">Off</span>
+    </form>
+    </div>
+			
+			<div style="position:absolute;bottom:10%;left:50%;-webkit-transform:translate(-50%,0);width:270px;text-align:center;">
+				<button class="xbtn" onclick="document.getElementById('switchUser').style.display='block';">Switch User</button>
+				<button class="xbtn" style="margin-top:20px;" onclick="document.getElementById('cnfrm').style.display='block';">Clear User Data</button>
+			</div>
+			
+        <div id="cnfrm" style="display:none;position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);">
+					<div class="fadeInDown" style="position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);width:90%;max-width:500px;background:#FFF;border-radius:.25em .25em .4em .4em;text-align:center;box-shadow:0 0 20px rgba(0, 0, 0, 0.2);">
+						<a style="position:absolute;top:8px;right:8px;width:30px;height:30px;font-size:30px;cursor:pointer;" onclick="document.getElementById('cnfrm').style.display='none';">&times;</a>
+						<p style="padding:3em 1em;font-family:Segoe UI;">Are you sure you want to clear your progress?</p>
+						<button class="zxc" onclick="cls();">Yes</button><button class="zxv" onclick="document.getElementById('cnfrm').style.display='none';">No</button>
+					</div>
+				</div>
+			
+	<div id="switchUser" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);">
+		<div style="width:70%;max-width:400px;background-color:#fff;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);padding:10px 20px;">
+		<a style="position:absolute;top:8px;right:8px;width:30px;height:30px;font-size:30px;cursor:pointer;" onclick="document.getElementById('switchUser').style.display='none';">&times;</a>
+		<p style="font-family:segoe ui;">Switch User</p>
+		<div class="wp">
+		<div style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);border-radius:20px;text-align:center;vertical-align:middle;">
+			<span id="name1" onclick="chkName1();" style="position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);"></span>
+		</div>
+		</div>
+		
+		<div class="wp" style="margin-left:20px;">
+		<div style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);border-radius:20px;text-align:center;vertical-align:middle;">
+			<span id="name2" onclick="chkName2();" style="position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);"></span>
+		</div>
+		</div>
+		</div>
+	</div>
+	</div>
+  <!--DONE-->
+    <div id="LEVEL">
+        <img class="level" src="images/levelSelect.png">
+			<div style="position:absolute;top:50%;left:50%;-webkit-transform:translate(-44%,-30%);width:460px;">
+        <img class="lvl1" src="images/lvl1.png" onclick="sDiff(); playSound();">
+        <img class="lvl2" src="images/lvl2.png" onclick="sDiff2(); playSound();">
+        <img class="lvl3" src="images/lvl3.png" onclick="sDiff3(); playSound();">
+			</div>
+        <img class="backbtn" src="images/backbtn.png" onclick="back(); playSound();">
+    </div>
+  <!--DONE-->  
+    <div id="DIFF">
+        <img class="diffetc" src="images/diffetc.png">
+			  <img class="cos animated infinite flash" src="images/cos.png">
+      <div style="position:absolute;top:50%;left:50%;-webkit-transform:translate(-53%,-38%);width:380px;text-align:center;">
+				<img class="diff" src="images/diff.png">
+				<img class="easy" src="images/easy.png" onclick="goIns1(); playSound();">
+        <img id="med1" class="med" src="images/medium.png">
+        <img id="hard1" class="hard" src="images/hard.png">
+			</div>
+        <img class="backbtn" src="images/backbtn.png" onclick="back(); playSound();">
+    </div>
+  <!--DONE-->  
+    <div id="DIFF2">
+			<div id="animals" class="animalsbg"></div>
+      <div style="position:absolute;top:60%;left:50%;-webkit-transform:translate(-53%,-38%);width:380px;text-align:center;">
+				<img class="diff" src="images/diff.png">
+				<img class="easy" src="images/easy.png" onclick="goIns4(); playSound();">
+        <img id="med2" class="med" src="images/medium.png">
+        <img id="hard2" class="hard" src="images/hard.png">
+			</div>
+        <img class="backbtn" src="images/backbtn.png" onclick="back(); playSound();">
+    </div>
+  <!--DONE-->  
+    <div id="DIFF3">
+			<div id="space" class="spacebg"></div>
+        <div style="position:absolute;top:60%;left:50%;-webkit-transform:translate(-53%,-38%);width:380px;text-align:center;">
+				<img class="diff" src="images/diff.png">
+				<img class="easy" src="images/easy.png" onclick="goIns7(); playSound();">
+        <img id="med3" class="med" src="images/medium.png">
+        <img id="hard3" class="hard" src="images/hard.png">
+			</div>
+        <img class="backbtn" src="images/backbtn.png" onclick="back(); playSound();">
+    </div>
+  <!--DONE-->  
+    <div id="LVL1">
+        <div id="LVL1EASY"><p class="labela">Level 1 - Easy</p><p class="labelb">Match the shape</p></div>
+        <div id="LVL1MED"><p class="labela">Level 1 - Medium</p><p class="labelb">Match the shape</p></div>
+        <div id="LVL1HARD"><p class="labela">Level 1 - Hard</p><p class="labelb">Match the shape</p></div>
+    </div>
+  <!--DONE-->  
+    <div id="LVL2">
+			<div id="LVL2EASY"><img src="images/bg1.png" class="anm"><div class="wow"><p class="labela">Level 2 - Easy</p><p class="labelb1">Match the animals diet</p></div></div>
+      <div id="LVL2MED"><img src="images/bg1.png" class="anm"><div class="wow"><p class="labela">Level 2 - Medium</p><p class="labelb1">Match the animals diet</p></div></div>
+      <div id="LVL2HARD"><img src="images/bg1.png" class="anm"><div class="wow"><p class="labela">Level 2 - Hard</p><p class="labelb1">Match the animals diet</p></div></div>
+    </div>
+  <!--DONE-->  
+    <div id="LVL3">
+      <div id="LVL3EASY"><img src="images/bg4.png" class="spc"><div class="wow"><p class="labela">Level 3 - Easy</p><p class="labelb2">Match the planets with their names</p></div></div>
+			<div id="LVL3MED"><img src="images/bg4.png" class="spc"><div class="wow"><p class="labela">Level 3 - Medium</p><p class="labelb3">True or False</p></div></div>
+			<div id="LVL3HARD"><img src="images/bg4.png" class="spc"><div class="wow"><p class="labela">Level 3 - Hard</p><p class="labelb3">True or False</p></div></div>
+    </div>
+  <!--DONE-->  
+    <div id="INS">
+        <div id="INS1">
+            <div class="iTitle1">Match the Shape - Easy</div>
+            <div class="iSubtitle1">Determine if the two shapes match. Get a score equal or greater than 6 to unlock the next level.</div>
+        </div>
+        
+        <div id="INS2">
+            <div class="iTitle1">Match the Shape - Medium</div>
+            <div class="iSubtitle1">Determine whether the current symbol match the previous symbol. Get a score equal or greater than 11 to unlock the next level.</div>
+        </div>
+        
+        <div id="INS3">
+            <div class="iTitle1">Match the Shape - Hard</div>
+            <div class="iSubtitle1">Determine if the object match the shape.</div>
+        </div>
+        
+        <div id="INS4">
+            <div class="iTitle1">Match the Animal</div>
+            <div class="iSubtitle1">Determine if the animal is a herbivore, carnivore or omnivore. If the picture shown contains grass only does it match the animal to be a Herbivore, if it contains meat only does it match the animal to be a Carnivore or if it contains both does it match the animal to be an Omnivore. Get a score equal or greater than 6 to unlock the next level.</div>
+        </div>
+        
+        <div id="INS40">
+            <div class="iTitle1">Match the Animal</div>
+            <div class="iSubtitle1">Determine if the animal is a herbivore, carnivore or omnivore. If the picture shown contains grass only does it match the animal to be a Herbivore, if it contains meat only does it match the animal to be a Carnivore or if it contains both does it match the animal to be an Omnivore. Get a score equal or greater than 11 to unlock the next level.</div>
+        </div>
+        
+        <div id="INS41">
+            <div class="iTitle1">Match the Animal</div>
+            <div class="iSubtitle1">Determine if the animal is a herbivore, carnivore or omnivore. Press your choice. </div>
+        </div>
+        
+        <div id="INS5">
+            <div class="iTitle1">Match the Planet</div>
+            <div class="iSubtitle1">Determine if the name of the planet matches the image. Get a score equal or greater than 6 to unlock the next level.</div>
+        </div>
+        
+        <div id="INS60">
+            <div class="iTitle1">True or False</div>
+            <div class="iSubtitle1">Determine if the statement about our solar system is true or false. Press "Yes" if the statement is correct or "No" if wrong. Get a score equal or greater than 11 to unlock the next level.</div>
+        </div>
+        
+        <div id="INS6">
+            <div class="iTitle1">True or False</div>
+            <div class="iSubtitle1">Determine if the statement about our solar system is true or false. Press "Yes" if the statement is correct or "No" if wrong</div>
+        </div>
+        
+        
+        <button id="PLAY" class="btn" onclick="playSound();">Play</button>
+    </div>
+  <!--DONE-->      
+    <div id="peri">
+        <div class="area"></div>
+     <div class="pads">
+         <div style="position:absolute;left:50%;-webkit-transform:translate(-50%,0);width:100%;height:100%;padding: 0px 20px;">
+          <div id="thePad2" class="gamepad2">
+             <!--Shapes-->
+        <img id="shapeb6" class="shapeX" title="6sides" src="images/shapes/6side.png">
+        <img id="shapeb7" class="shapeX" title="7sides" src="images/shapes/7side.png">
+        <img id="shapeb8" class="shapeX" title="8sides" src="images/shapes/8side.png">
+        <img id="shapeb4" class="shapeX" title="circle" src="images/shapes/circle.png">
+        <img id="shapeb3" class="shapeX" title="rectangle" src="images/shapes/rectangle.png">
+        <img id="shapeb2" class="shapeX" title="square" src="images/shapes/square.png">
+        <img id="shapeb5" class="shapeX" title="star" src="images/shapes/star.png">
+        <img id="shapeb1" class="shapeX" title="triangle" src="images/shapes/triangle.png">
+        <img id="shapeb9" class="shapeX" title="heart" src="images/shapes/heart.png">
+        <img id="shapeb10" class="shapeX" title="5side" src="images/shapes/5side.png">
+        <img id="shapeb11" class="shapeX" title="parallelogram" src="images/shapes/par.png">
+						
+						<!--Animals-->
+        <img id="c1" class="shapeX expandUp" title="herb" src="images/lvl2/grass.jpg">
+        <img id="c2" class="shapeX expandUp" title="carn" src="images/lvl2/meat.jpg">
+        <img id="c3" class="shapeX expandUp" title="omni" src="images/lvl2/mix.jpg">  
+						
+            <!--Planets-->
+				<div id="name1" class="names expandUp" title="saturn">Saturn</div>
+        <div id="name2" class="names expandUp" title="jupiter">Jupiter</div>
+        <div id="name3" class="names expandUp" title="earth">Earth</div>
+        <div id="name4" class="names expandUp" title="mars">Mars</div>
+        <div id="name5" class="names expandUp" title="venus">Venus</div>
+        <div id="name6" class="names expandUp" title="uranus">Uranus</div>
+        <div id="name7" class="names expandUp" title="neptune">Neptune</div>
+        <div id="name8" class="names expandUp" title="mercury">Mercury</div>
+        <div id="name9" class="names expandUp" title="sun">Sun</div>
+        <div id="name10" class="names expandUp" title="moon">Moon</div>
+						
+          </div>
+          <div id="thePad1" class="gamepad1">
+            <!--Shapes-->
+        <img id="shapea1" class="shapeX" title="6sides" src="images/shapes/6side.png">
+        <img id="shapea2" class="shapeX" title="7sides" src="images/shapes/7side.png">
+        <img id="shapea3" class="shapeX" title="8sides" src="images/shapes/8side.png">
+        <img id="shapea4" class="shapeX" title="circle" src="images/shapes/circle.png">
+        <img id="shapea5" class="shapeX" title="rectangle" src="images/shapes/rectangle.png">
+        <img id="shapea6" class="shapeX" title="square" src="images/shapes/square.png">
+        <img id="shapea7" class="shapeX" title="star" src="images/shapes/star.png">
+        <img id="shapea8" class="shapeX" title="triangle" src="images/shapes/triangle.png">
+        <img id="shapea9" class="shapeX" title="heart" src="images/shapes/heart.png">
+        <img id="shapea10" class="shapeX" title="5side" src="images/shapes/5side.png">
+        <img id="shapea11" class="shapeX" title="parallelogram" src="images/shapes/par.png">
+           
+        <img id="obj1" class="shapeX" src="images/objects/object1.jpg" title="circle">
+        <img id="obj2" class="shapeX" src="images/objects/object2.jpg" title="circle">
+        <img id="obj3" class="shapeX" src="images/objects/object3.jpg" title="circle">
+        <img id="obj4" class="shapeX" src="images/objects/object4.jpg" title="circle">
+        <img id="obj5" class="shapeX" src="images/objects/object5.jpg" title="circle">
+        <img id="obj6" class="shapeX" src="images/objects/object6.jpg" title="rectangle">
+        <img id="obj7" class="shapeX" src="images/objects/object7.jpg" title="rectangle">
+        <img id="obj8" class="shapeX" src="images/objects/object8.jpg" title="rectangle">
+        <img id="obj9" class="shapeX" src="images/objects/object9.jpg" title="rectangle">
+        <img id="obj10" class="shapeX" src="images/objects/object10.jpg" title="square">
+        <img id="obj11" class="shapeX" src="images/objects/object11.jpg" title="square">
+        <img id="obj12" class="shapeX" src="images/objects/object12.jpg" title="square">
+        <img id="obj13" class="shapeX" src="images/objects/object13.jpg" title="square">
+        <img id="obj14" class="shapeX" src="images/objects/object14.jpg" title="square">
+        <img id="obj15" class="shapeX" src="images/objects/object15.jpg" title="triangle">
+        <img id="obj16" class="shapeX" src="images/objects/object16.jpg" title="triangle">
+        <img id="obj17" class="shapeX" src="images/objects/object17.jpg" title="triangle">
+        <img id="obj18" class="shapeX" src="images/objects/object18.jpg" title="triangle">
+        <img id="obj19" class="shapeX" src="images/objects/object19.jpg" title="triangle">
+						
+						<!--Animals-->
+        <img id="anima1" class="shapeX expandUp" src="images/lvl2/car1.jpg" title="carn">
+        <img id="anima2" class="shapeX expandUp" src="images/lvl2/car2.jpg" title="carn">
+        <img id="anima3" class="shapeX expandUp" src="images/lvl2/car3.jpg" title="carn">
+        <img id="anima4" class="shapeX expandUp" src="images/lvl2/car4.jpg" title="carn">
+        <img id="anima12" class="shapeX expandUp" src="images/lvl2/car5.jpg" title="carn">
+        <img id="anima5" class="shapeX expandUp" src="images/lvl2/her1.jpg" title="herb">
+        <img id="anima6" class="shapeX expandUp" src="images/lvl2/her2.jpg" title="herb">
+        <img id="anima7" class="shapeX expandUp" src="images/lvl2/her3.jpg" title="herb">
+        <img id="anima8" class="shapeX expandUp" src="images/lvl2/her4.png" title="herb">
+        <img id="anima9" class="shapeX expandUp" src="images/lvl2/om1.jpg" title="omni">
+        <img id="anima10" class="shapeX expandUp" src="images/lvl2/om2.jpg" title="omni">
+        <img id="anima11" class="shapeX expandUp" src="images/lvl2/om3.jpg" title="omni">
+        <img id="anima13" class="shapeX expandUp" src="images/lvl2/car6.jpg" title="carn">
+        <img id="anima14" class="shapeX expandUp" src="images/lvl2/car7.jpg" title="carn">
+        <img id="anima15" class="shapeX expandUp" src="images/lvl2/car8.jpg" title="carn">
+        <img id="anima16" class="shapeX expandUp" src="images/lvl2/her5.jpg" title="herb">
+        <img id="anima17" class="shapeX expandUp" src="images/lvl2/her6.gif" title="herb">
+        <img id="anima18" class="shapeX expandUp" src="images/lvl2/her7.jpg" title="herb">
+        <img id="anima19" class="shapeX expandUp" src="images/lvl2/her8.jpg" title="herb">
+        <img id="anima20" class="shapeX expandUp" src="images/lvl2/om4.jpg" title="omni">
+        <img id="anima21" class="shapeX expandUp" src="images/lvl2/om5.jpg" title="omni">
+        <img id="anima22" class="shapeX expandUp" src="images/lvl2/om6.jpg" title="omni"> 
+						
+						<!--Planets-->
+				<img id="plana1" class="shapeX expandUp" src="images/lvl3/jupiter.png" title="jupiter">
+        <img id="plana2" class="shapeX expandUp" src="images/lvl3/earth.png" title="earth">
+        <img id="plana3" class="shapeX expandUp" src="images/lvl3/neptune.png" title="neptune">
+        <img id="plana4" class="shapeX expandUp" src="images/lvl3/mars.png" title="mars">
+        <img id="plana5" class="shapeX expandUp" src="images/lvl3/mercury.png" title="mercury">
+        <img id="plana6" class="shapeX expandUp" src="images/lvl3/saturn.png" title="saturn">
+        <img id="plana7" class="shapeX expandUp" src="images/lvl3/uranus.png" title="uranus">
+        <img id="plana8" class="shapeX expandUp" src="images/lvl3/venus.png" title="venus">
+        <img id="plana9" class="shapeX expandUp" src="images/lvl3/sun.png" title="sun">
+        <img id="plana10" class="shapeX expandUp" src="images/lvl3/moon.png" title="moon">
+          </div>
+         </div>
+			 <div id="thePad4" class="gamepad4">
+				<img id="animb1" class="shapeX expandUp" src="images/lvl2/car1.jpg" title="carn">
+        <img id="animb2" class="shapeX expandUp" src="images/lvl2/car2.jpg" title="carn">
+        <img id="animb3" class="shapeX expandUp" src="images/lvl2/car3.jpg" title="carn">
+        <img id="animb4" class="shapeX expandUp" src="images/lvl2/car4.jpg" title="carn">
+        <img id="animb12" class="shapeX expandUp" src="images/lvl2/car5.jpg" title="carn">
+        <img id="animb5" class="shapeX expandUp" src="images/lvl2/her1.jpg" title="herb">
+        <img id="animb6" class="shapeX expandUp" src="images/lvl2/her2.jpg" title="herb">
+        <img id="animb7" class="shapeX expandUp" src="images/lvl2/her3.jpg" title="herb">
+        <img id="animb8" class="shapeX expandUp" src="images/lvl2/her4.png" title="herb">
+        <img id="animb9" class="shapeX expandUp" src="images/lvl2/om1.jpg" title="omni">
+        <img id="animb10" class="shapeX expandUp" src="images/lvl2/om2.jpg" title="omni">
+        <img id="animb11" class="shapeX expandUp" src="images/lvl2/om3.jpg" title="omni">
+        <img id="animb13" class="shapeX expandUp" src="images/lvl2/car6.jpg" title="carn">
+        <img id="animb14" class="shapeX expandUp" src="images/lvl2/car7.jpg" title="carn">
+        <img id="animb15" class="shapeX expandUp" src="images/lvl2/car8.jpg" title="carn">
+        <img id="animb16" class="shapeX expandUp" src="images/lvl2/her5.jpg" title="herb">
+        <img id="animb17" class="shapeX expandUp" src="images/lvl2/her6.gif" title="herb">
+        <img id="animb18" class="shapeX expandUp" src="images/lvl2/her7.jpg" title="herb">
+        <img id="animb19" class="shapeX expandUp" src="images/lvl2/her8.jpg" title="herb">
+        <img id="animb20" class="shapeX expandUp" src="images/lvl2/om4.jpg" title="omni">
+        <img id="animb21" class="shapeX expandUp" src="images/lvl2/om5.jpg" title="omni">
+        <img id="animb22" class="shapeX expandUp" src="images/lvl2/om6.jpg" title="omni"> 	
+			</div>
+			 <div id="thePad3" class="gamepad3">
+    <div id="q1" class="ques expandUp" data-ans="yes">Jupiter is the largest planet in our solar system.</div>
+    <div id="q2" class="ques expandUp" data-ans="no">Saturn has a very hot atmosphere.</div>
+    <div id="q3" class="ques expandUp" data-ans="yes">Earth is the only planet with liquid water.</div>
+    <div id="q4" class="ques expandUp" data-ans="yes">Mercury is the closest planet to the sun.</div>
+    <div id="q5" class="ques expandUp" data-ans="no">Mars is the smallest, darkest and coldest planet.</div>
+    <div id="q6" class="ques expandUp" data-ans="yes">The moon is the only natural satellite that goes around the earth.</div>
+    <div id="q7" class="ques expandUp" data-ans="no">The moon goes through six stages as it travels around the Earth.  These are called phases</div>
+    <div id="q8" class="ques expandUp" data-ans="no">When the moon is all in shadow it is called a full moon.</div>
+    <div id="q9" class="ques expandUp" data-ans="yes">Waxing and waning are terms used to describe the phases of the moon.</div>
+    <div id="q10" class="ques expandUp" data-ans="yes">The sun is the largest member of the solar system.</div>
+    <div id="q11" class="ques expandUp" data-ans="no">Earth is the only planet with a moon.</div>
+    <div id="q12" class="ques expandUp" data-ans="yes">Earth is the only planet known to support life.</div>
+    <div id="q13" class="ques expandUp" data-ans="yes">The internal structures of Venus and Earth are similar.</div>
+    <div id="q14" class="ques expandUp" data-ans="yes">The climates of Earth and Mars were similar in their early history.</div>
+    <div id="q15" class="ques expandUp" data-ans="yes">The surface of Venus is very hot because of extreme volcanic activity.</div>
+    <div id="q16" class="ques expandUp" data-ans="yes">The planet with the strongest gravity is Jupiter.</div>
+    <div id="q17" class="ques expandUp" data-ans="yes">The planet with the largest diameter is Jupiter.</div>
+    <div id="q18" class="ques expandUp" data-ans="no">The Solar System formed approximately 15 billion years ago.</div>
+    <div id="q19" class="ques expandUp" data-ans="yes">Earth is the most dense planet in the Solar System.</div>
+    <div id="q20" class="ques expandUp" data-ans="no">Earth is the only body in the Solar System with active volcanoes.</div>
+    <div id="q21" class="ques expandUp" data-ans="yes">Earth is the only planet with abundant oxygen in its atmosphere.</div>
+       </div>
+     </div>
+			
+         <img class="pausebtn" src="images/pausebtn.png" onclick="pause()">
+        <div style="position:absolute;top:0;left:50%;-webkit-transform:translate(-50%,0);width:460px;height:40px;">
+         <div class="score"><p>Score</p></div>
+         <div class="scoreV"><p id="scorer"></p></div>
+         <div class="time"><p>Time</p></div>
+         <div class="timeV"><p id="timer"></p></div>
+        </div>
+    </div>
+  <!--DONE-->  
+    <div id="choices">
+     <span class="ch">
+      <img class="yes" src="images/yes.png" onclick="theYes()">
+      <img class="no" src="images/no.png" onclick="theNo()">
+     </span>
+    </div>
+  <!--DONE-->  
+    <div id="choices2">
+     <div class="ch2">
+       <img class="carnbtn" src="images/carnibtn.png" onclick="theCarn()">
+       <img class="omnibtn" src="images/omnibtn.png" onclick="theOmni()">
+       <img class="herbbtn" src="images/herbibtn.png" onclick="theHerb()">
+     </div>
+    </div>
+  <!--DONE-->  
+    <div class="what">
+        <img id="eks" src="images/eks.png" height="200px" width="200px">
+        <img id="tsek" src="images/tsek.png" height="200px" width="200px"></div>
+  <!--DONE-->  
+    <div><p id="ready"></p></div>
+  <!--DONE-->  
+    <div id="RESULT">
+        <img id="star" class="fadeIn" src="images/star.png">
+        <img id="star1" class="fadeIn" src="images/star1.png">
+        <img id="star2" class="fadeIn" src="images/star2.png">
+    <img src="images/result.png" class="fadeIn">
+    <p id="success" class="fadeIn">Good Job Thinker!</p>
+    <p id="failed" class="fadeIn">Try Harder Thinker!</p>
+        <p id="rscore" class="fadeIn">Score:&nbsp;&nbsp;<span id="rScore"></span></p>
+    <div style="position:absolute;bottom:0;width:459px;">
+		<img id="try" class="try fadeIn" src="images/try.png">
+    <img id="nxtlvl" class="nextlvl fadeIn" src="images/nextlvl.png">
+    <img class="menu fadeIn" src="images/menu.png" onclick="back()"></div></div>
+  <!--DONE-->  
+    <div id="PAUSED">
+    <img class="paused" src="images/paused.png">
+    	<div style="position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);width:160px;">
+    		<img class="resume" src="images/resume.png" onclick="resume()">
+    		<img class="poption" src="images/optionbtn.png" onclick="goAudio()">
+    		<img id="rrestart" class="restart" src="images/restart.png">
+    		<img class="quit" src="images/quit.png" onclick="back()">
+			</div>
+    </div>
+  <!--DONE-->  
+    <div id="pauAud">
+        <img class="ins2" src="images/ins.png">
+    <div class="forma2">
+    <form>
+		<input id="radioOn" name="sound" class="rad" type="radio" onclick="audioOn()" checked><span class="on">On</span> 
+    <input id="radioOff" name="sound" class="rad2" type="radio" onclick="audioOff()"><span class="off">Off</span>
+    </form>
+    </div>
+        <button class="btn" onclick="confirm()">Confirm</button>
+    </div>
+
+</div>
+	
+<div id="new" style="display:none;position:absolute;left:0;top:0;width:100%;height:100%;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);">
+	<div style="position:relative;top:10%;left:50%;-webkit-transform:translate(-50%,0%);background-color:rgba(255,255,255,0.9);box-sizing:border-box;width:90%;max-width:500px;height:50%;max-height:320px;">
+		<p style="font-family:Segoe UI;">Welcome to Absolute Thinking. What is your nickname?</p>
+		<input id="theName" style="font-family:Segoe UI;font-size:40px;position:absolute;bottom:15%;width:100%;padding:12px 20px;margin:8px 0;box-sizing:border-box;" type="text">
+		<button onclick="newCreate();" style="position:absolute;bottom:0;left:50%;-webkit-transform:translate(-50%,0%);width:100px;height:50px;font-size:24px;">Submit</button>
+	</div>
+</div>
+	
+<div id="nametag" class="fadeInDown2" style="display:none;position:absolute;top:0;left:50%;-webkit-transform:translate(-50%,0%);">
+<div style="position:relative;width:200px;">
+	<span style="color:white;font-family:segoe ui;font-size:40px;">Hello</span>
+		<img src="images/tag.png" width="200px">
+	<span id="username" style="position:absolute;top:60%;left:50%;-webkit-transform:translate(-50%,-50%);color:black;font-family:segoe ui;font-size:24px;"></span>
+</div>
+</div>
+<script src="javascript/script.js" ></script>
+</body>
+</html>
