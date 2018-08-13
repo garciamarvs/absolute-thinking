@@ -1,6 +1,8 @@
-#Absolute Thinking
+# Absolute Thinking
 
 School Project for the Course Multimedia Technology
+
+Brain Teaser for Kids
 
 Includes 3 sets of stages namely Shapes, Animals and Space
 
